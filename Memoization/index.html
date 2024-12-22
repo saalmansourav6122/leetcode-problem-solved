@@ -6,15 +6,22 @@
     <title>Document</title>
   </head>
   <body>
+    <button>Add Num</button>
+    <div class="result">0</div>
     <script>
       function outerFn() {
         let num = 0;
         return function () {
-          return (num += 1);
+          num += 1;
+          return num;
         };
       }
+
       let tep = outerFn();
-      console.log(tep());
+
+      document.querySelector("button").addEventListener("click", () => {
+        document.querySelector(".result").innerHTML = tep();
+      });
     </script>
   </body>
 </html>
