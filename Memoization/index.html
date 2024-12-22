@@ -7,9 +7,12 @@
   </head>
   <body>
     <script>
-     function outerFn(){
+      function outerFn() {
         let num = 0;
-     }
+        return function () {
+          return (num += 1);
+        };
+      }
     </script>
   </body>
 </html>
