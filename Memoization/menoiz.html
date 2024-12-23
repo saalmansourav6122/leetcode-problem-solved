@@ -11,10 +11,25 @@
         return x + 10;
       }
 
-      const memo = () => {
+      const memo = (func) => {
         let cache = {};
-        return function () {};
+
+        return function (num) {
+          console.log(cache);
+
+          if (cache[num]) {
+            return cache[num];
+          } else {
+            const result = func(num);
+            cache[num] = result;
+            return result;
+          }
+        };
       };
+
+      const calculation = memo(add);
+      console.log(calculation(10));
+      console.log(calculation(10));
     </script>
   </body>
 </html>
