@@ -8,7 +8,7 @@
   <body>
     <script>
       function memoize(fn) {
-        let memo = [];
+        let memo = {};
         return function (...args) {
           let num = JSON.stringify(args);
           if (memo[num]) {
@@ -16,7 +16,7 @@
             return num;
           } else {
             console.log("calculating");
-            const result = fn(num);
+            const result = fn(...args);
             memo[num] = result;
             return result;
           }
