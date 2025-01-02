@@ -1,8 +1,16 @@
-console.log("hello world");
-// Setting a timeout
-const timeoutId = setTimeout(() => {
-  console.log("This will not be logged if we cancel the timeout");
-}, 5000);
+let cancellable = (fn, args, t) => {
+  let timeOutID;
 
-// Canceling the timeout
-clearTimeout(timeoutId);
+  const cancelFn = () => {
+    clearTimeout(timeOutID);
+  };
+
+  timeOutID = setTimeout(() => {
+    fn(...args);
+  }, t);
+
+  return cancelFn;
+};
+const fn1 = (x) => x * 5;
+const cancelFn1 = cancellable(fn1, [2], 20);
+setTimeout(cancelFn1, 50);
